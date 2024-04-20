@@ -7,6 +7,10 @@ class Monster extends Phaser.Scene {
         this.bodyX = 300;
         this.bodyY = 350;
         
+        this.aKey = null;
+        this.dKey = null;
+        this.sKey = null;
+        this.fKey = null;
     }
 
     // Use preload to load art and sound assets before the scene starts running.
@@ -57,48 +61,48 @@ class Monster extends Phaser.Scene {
         my.sprite.antenna.flipX = true;
 
 
-        this.input.keyboard.on("keydown", function (event) {
-            if(event.code == "KeyS"){
-                my.sprite.smile.visible = true;
-                my.sprite.fangs.visible = false;
-            }
-            else if(event.code == "KeyF"){
-                my.sprite.fangs.visible = true;
-                my.sprite.smile.visible = false;
-            }
-            if(event.code == "KeyA"){
-                my.sprite.body.x -= 5;
-                my.sprite.rightLeg.x -= 5;
-                my.sprite.leftLeg.x -= 5;
-                my.sprite.rightArm.x -= 5;
-                my.sprite.leftArm.x -= 5;
-                my.sprite.eye.x -= 5;
-                my.sprite.smile.x -= 5;
-                my.sprite.fangs.x -= 5;
-                my.sprite.horn.x -= 5;
-                my.sprite.antenna.x -= 5;
-            }
-            else if(event.code == "KeyD"){
-                my.sprite.body.x += 5;
-                my.sprite.rightLeg.x += 5;
-                my.sprite.leftLeg.x += 5;
-                my.sprite.rightArm.x += 5;
-                my.sprite.leftArm.x += 5;
-                my.sprite.eye.x += 5;
-                my.sprite.smile.x += 5;
-                my.sprite.fangs.x += 5;
-                my.sprite.horn.x += 5;
-                my.sprite.antenna.x += 5;
-            }
-        });
+        this.aKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+        this.sKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+        this.dKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+        this.fKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
     }
 
 
     update() {
         let my = this.my;    // create an alias to this.my for readability
 
-        
-       
+        if(this.aKey.isDown){
+            my.sprite.body.x -= 5;
+            my.sprite.rightLeg.x -= 5;
+            my.sprite.leftLeg.x -= 5;
+            my.sprite.rightArm.x -= 5;
+            my.sprite.leftArm.x -= 5;
+            my.sprite.eye.x -= 5;
+            my.sprite.smile.x -= 5;
+            my.sprite.fangs.x -= 5;
+            my.sprite.horn.x -= 5;
+            my.sprite.antenna.x -= 5;
+        }
+        if(this.dKey.isDown){
+            my.sprite.body.x += 5;
+            my.sprite.rightLeg.x += 5;
+            my.sprite.leftLeg.x += 5;
+            my.sprite.rightArm.x += 5;
+            my.sprite.leftArm.x += 5;
+            my.sprite.eye.x += 5;
+            my.sprite.smile.x += 5;
+            my.sprite.fangs.x += 5;
+            my.sprite.horn.x += 5;
+            my.sprite.antenna.x += 5;
+        }
+       if(Phaser.Input.Keyboard.JustDown(this.sKey)){
+            my.sprite.smile.visible = true;
+            my.sprite.fangs.visible = false;
+       }
+       if(Phaser.Input.Keyboard.JustDown(this.fKey)){
+            my.sprite.fangs.visible = true;
+            my.sprite.smile.visible = false;
+       }
     }
 
 }
